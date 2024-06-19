@@ -1,5 +1,7 @@
+import numpy as np
 import pandas as pd
-from datasets import load_dataset, load_metric
+from datasets import load_dataset
+import evaluate
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, Trainer, TrainingArguments, DataCollatorWithPadding
 import torch
 
@@ -45,7 +47,7 @@ model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-unc
 model.to(device)
 
 # Define accuracy metric
-metric = load_metric("accuracy")
+metric = evaluate.load("accuracy")
 
 def compute_metrics(eval_pred):
     logits, labels = eval_pred

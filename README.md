@@ -56,8 +56,7 @@ This script will:
 ## Notes:
 
 - Replace `your-repository` with the actual repository URL if you have one.
-- Make sure the `train.py` script contains the training and evaluation code provided earlier.
-- If you have a `LICENSE` file, ensure it is referenced correctly.
+- Make sure the `tfm_classifier.py` script contains the training and evaluation code provided earlier.
 
 This `README.md` provides comprehensive instructions on setting up, running, and using the project, ensuring clarity for any users or contributors.
 

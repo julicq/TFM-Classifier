@@ -47,10 +47,10 @@ This script will:
 
 ## Requirements
 
-*torch:* PyTorch for model training and inference.
-*transformers:* Hugging Face Transformers library for using the DistilBERT model.
-*datasets:* Hugging Face Datasets library for loading and processing the IMDb dataset.
-*pandas:* Data manipulation library.
+- *torch:* PyTorch for model training and inference.
+- *transformers:* Hugging Face Transformers library for using the DistilBERT model.
+- *datasets:* Hugging Face Datasets library for loading and processing the IMDb dataset.
+- *pandas:* Data manipulation library.
 
 
 ## Notes:

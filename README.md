@@ -35,4 +35,31 @@ This project uses the DistilBERT model to perform sentiment classification on th
 To train and evaluate the model, run the following command:
 
 ```sh
-python train.py
+python tfm_classifier.py
+```
+
+This script will:
+
+- Load and preprocess the IMDb dataset.
+- Fine-tune the DistilBERT model.
+- Evaluate the model on the test set.
+- Save the fine-tuned model and tokenizer.
+
+## Requirements
+
+*torch:* PyTorch for model training and inference.
+*transformers:* Hugging Face Transformers library for using the DistilBERT model.
+*datasets:* Hugging Face Datasets library for loading and processing the IMDb dataset.
+*pandas:* Data manipulation library.
+
+
+## Notes:
+
+- Replace `your-repository` with the actual repository URL if you have one.
+- Make sure the `train.py` script contains the training and evaluation code provided earlier.
+- If you have a `LICENSE` file, ensure it is referenced correctly.
+
+This `README.md` provides comprehensive instructions on setting up, running, and using the project, ensuring clarity for any users or contributors.
+
+## License
+This project is licensed under the MIT License. See the *LICENSE* file for details.

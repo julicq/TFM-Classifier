@@ -6,7 +6,16 @@ model = DistilBertForSequenceClassification.from_pretrained('./fine-tuned-model'
 tokenizer = DistilBertTokenizer.from_pretrained('./fine-tuned-model')
 
 # Move model to GPU if available
-device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+# Check if CUDA or MPS is available
+if torch.cuda.is_available():
+    device = torch.device("cuda")
+    print("CUDA is available. Using GPU.")
+elif torch.backends.mps.is_available():
+    device = torch.device("mps")
+    print("MPS is available. Using GPU.")
+else:
+    device = torch.device("cpu")
+    print("CUDA and MPS are not available. Using CPU.")
 model.to(device)
 
 # Predict sentiment

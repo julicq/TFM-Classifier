@@ -1,13 +1,17 @@
-import torch
 from transformers import DistilBertForSequenceClassification, DistilBertTokenizer
+import torch
 
 # Load the fine-tuned model and tokenizer
 model = DistilBertForSequenceClassification.from_pretrained('./fine-tuned-model')
 tokenizer = DistilBertTokenizer.from_pretrained('./fine-tuned-model')
 
-# Example prediction
+# Move model to GPU if available
+device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+model.to(device)
+
+# Predict sentiment
 test_text = "I enjoyed this movie a lot!"
-test_encoding = tokenizer(test_text, return_tensors='pt', truncation=True, padding=True)
+test_encoding = tokenizer(test_text, return_tensors='pt', truncation=True, padding=True).to(device)
 model.eval()
 with torch.no_grad():
     outputs = model(**test_encoding)

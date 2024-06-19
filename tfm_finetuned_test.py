@@ -1,3 +1,4 @@
+import torch
 from transformers import DistilBertForSequenceClassification, DistilBertTokenizer
 
 # Load the fine-tuned model and tokenizer

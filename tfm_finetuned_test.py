@@ -16,6 +16,7 @@ elif torch.backends.mps.is_available():
 else:
     device = torch.device("cpu")
     print("CUDA and MPS are not available. Using CPU.")
+
 model.to(device)
 
 # Predict sentiment

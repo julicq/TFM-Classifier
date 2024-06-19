@@ -1,5 +1,5 @@
 import pandas as pd
-from datasets import load_dataset
+from datasets import load_dataset, load_metric
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, Trainer, TrainingArguments, DataCollatorWithPadding
 import torch
 
@@ -13,7 +13,7 @@ elif torch.backends.mps.is_available():
 else:
     device = torch.device("cpu")
     print("CUDA and MPS are not available. Using CPU.")
-    
+
 print(f"Using device: {device}")
 
 # Load the IMDb dataset
@@ -43,6 +43,14 @@ data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 # Load the pre-trained DistilBERT model for sequence classification
 model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', num_labels=2)
 model.to(device)
+
+# Define accuracy metric
+metric = load_metric("accuracy")
+
+def compute_metrics(eval_pred):
+    logits, labels = eval_pred
+    predictions = np.argmax(logits, axis=-1)
+    return metric.compute(predictions=predictions, references=labels)
 
 training_args = TrainingArguments(
     output_dir='./results',
@@ -74,7 +82,8 @@ trainer = CustomTrainer(
     args=training_args,
     train_dataset=train_dataset,
     eval_dataset=test_dataset,
-    data_collator=data_collator
+    data_collator=data_collator,
+    compute_metrics=compute_metrics
 )
 
 # Train the model
